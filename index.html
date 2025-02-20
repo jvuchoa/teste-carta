@@ -49,7 +49,6 @@
       color: red;
       font-size: 24px;
       font-weight: bold;
-      margin-top: 10px;
       position: absolute;
       top: 20px; /* Centraliza no topo */
     }
@@ -61,7 +60,6 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      margin-top: 50px; /* Ajustado para que o botão fique abaixo da carta */
       transition: background-color 0.3s ease;
       font-size: 16px;
     }
@@ -74,48 +72,53 @@
       transform: scale(0.98);
     }
 
-    .buttons-container {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-      visibility: hidden; /* Inicialmente invisível */
+    #resetButton {
+      display: none; /* Esconde o botão Reset inicialmente */
+      margin-top: 20px;
     }
 
-    .buttons-container.visible {
-      visibility: visible; /* Visível após a carta ser aberta */
+    .botao-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 450px;
+      position: absolute;
+      width: 100%;
     }
   </style>
 </head>
 <body>
   <div class="carta-container">
     <div class="carta" id="carta">
-      <div class="mensagem">Eu te amo ❤️</div>
-      <div class="buttons-container" id="buttonsContainer">
-        <button class="botao" id="resetButton">Reset</button>
-        <button class="botao" id="openButton">Open</button>
-      </div>
+      <div class="mensagem" id="mensagem">Eu te amo ❤️</div>
     </div>
+  </div>
+
+  <div class="botao-container">
+    <button class="botao" id="openButton">Open</button>
+    <button class="botao" id="resetButton">Reset</button>
   </div>
 
   <script>
     const openButton = document.getElementById("openButton");
     const resetButton = document.getElementById("resetButton");
     const carta = document.getElementById("carta");
-    const mensagem = document.querySelector(".mensagem");
-    const buttonsContainer = document.getElementById("buttonsContainer");
+    const mensagem = document.getElementById("mensagem");
 
+    // Função para abrir a carta
     openButton.addEventListener("click", () => {
       carta.classList.add("aberta"); // Aproxima a carta
       mensagem.style.display = "block"; // Exibe a mensagem
-      buttonsContainer.classList.add("visible"); // Exibe o botão "Reset"
+      resetButton.style.display = "block"; // Exibe o botão "Reset"
       openButton.style.display = "none"; // Esconde o botão "Open"
     });
 
+    // Função para resetar a carta
     resetButton.addEventListener("click", () => {
-      carta.classList.remove("aberta"); // Remove o efeito de aproximação
-      mensagem.style.display = "none"; // Esconde a mensagem
-      openButton.style.display = "block"; // Exibe o botão "Open"
-      buttonsContainer.classList.remove("visible"); // Esconde o botão "Reset"
+      carta.classList.remove("aberta"); 
+      mensagem.style.display = "none"; 
+      resetButton.style.display = "none"; 
+      openButton.style.display = "block"; 
     });
   </script>
 </body>
