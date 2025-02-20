@@ -1,128 +1,82 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carta de Amor</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f0f0;
-      flex-direction: column;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6e6;
+            font-family: Arial, sans-serif;
+        }
 
-    .carta-container {
-      position: relative;
-      width: 320px;
-      height: 420px;
-      perspective: 1000px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+        .carta {
+            width: 300px;
+            height: 200px;
+            background-color: pink;
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: transform 0.5s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
 
-    .carta {
-      width: 100%;
-      height: 100%;
-      background-color: #f8c8d8;
-      border-radius: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 20px;
-      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-      position: absolute;
-      transform-style: preserve-3d;
-      transition: transform 0.6s ease;
-      flex-direction: column;
-    }
+        .mensagem {
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
 
-    .carta.aberta {
-      transform: scale(1.1); /* Aproximar a carta */
-    }
+        .botao {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #ff4d4d;
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
 
-    .mensagem {
-      display: none;
-      color: red;
-      font-size: 24px;
-      font-weight: bold;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+        .botao:hover {
+            background-color: #cc0000;
+        }
 
-    .botao {
-      padding: 12px 20px;
-      background-color: #ff6b6b;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-      font-size: 16px;
-      margin-top: 15px;
-    }
+        .aberta {
+            transform: scale(1.1);
+        }
 
-    .botao:hover {
-      background-color: #ff4747;
-    }
-
-    .botao:active {
-      transform: scale(0.98);
-    }
-
-    #resetButton {
-      display: none; /* Esconde o botão Reset inicialmente */
-    }
-
-    .botao-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-    }
-  </style>
+        .aberta .mensagem {
+            opacity: 1;
+        }
+    </style>
 </head>
 <body>
-  <div class="carta-container">
+
     <div class="carta" id="carta">
-      <div class="mensagem" id="mensagem">Eu te amo ❤️</div>
+        <div class="mensagem" id="mensagem">Eu te amo ❤️</div>
+        <button class="botao" onclick="abrirCarta()">Open</button>
     </div>
-  </div>
 
-  <div class="botao-container">
-    <button class="botao" id="openButton">Open</button>
-    <button class="botao" id="resetButton">Reset</button>
-  </div>
+    <script>
+        function abrirCarta() {
+            let carta = document.getElementById('carta');
+            let mensagem = document.getElementById('mensagem');
+            
+            carta.classList.add('aberta');
+            mensagem.style.opacity = "1";
+        }
+    </script>
 
-  <script>
-    const openButton = document.getElementById("openButton");
-    const resetButton = document.getElementById("resetButton");
-    const carta = document.getElementById("carta");
-    const mensagem = document.getElementById("mensagem");
-
-    // Função para abrir a carta
-    openButton.addEventListener("click", () => {
-      carta.classList.add("aberta"); // Aproxima a carta
-      mensagem.style.display = "block"; // Exibe a mensagem
-      resetButton.style.display = "block"; // Exibe o botão "Reset"
-      openButton.style.display = "none"; // Esconde o botão "Open"
-    });
-
-    // Função para resetar a carta
-    resetButton.addEventListener("click", () => {
-      carta.classList.remove("aberta"); // Remove o efeito de aproximação
-      mensagem.style.display = "none"; // Esconde a mensagem
-      resetButton.style.display = "none"; // Esconde o botão "Reset"
-      openButton.style.display = "block"; // Exibe o botão "Open"
-    });
-  </script>
 </body>
 </html>
