@@ -13,7 +13,7 @@
       height: 100vh;
       margin: 0;
       background-color: #f0f0f0;
-      overflow: hidden;
+      flex-direction: column;
     }
 
     .carta-container {
@@ -21,6 +21,9 @@
       width: 320px;
       height: 420px;
       perspective: 1000px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .carta {
@@ -50,7 +53,9 @@
       font-size: 24px;
       font-weight: bold;
       position: absolute;
-      top: 20px; /* Centraliza no topo */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     .botao {
@@ -62,6 +67,7 @@
       cursor: pointer;
       transition: background-color 0.3s ease;
       font-size: 16px;
+      margin-top: 15px;
     }
 
     .botao:hover {
@@ -74,16 +80,13 @@
 
     #resetButton {
       display: none; /* Esconde o botão Reset inicialmente */
-      margin-top: 20px;
     }
 
     .botao-container {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 450px;
-      position: absolute;
-      width: 100%;
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -115,10 +118,10 @@
 
     // Função para resetar a carta
     resetButton.addEventListener("click", () => {
-      carta.classList.remove("aberta"); 
-      mensagem.style.display = "none"; 
-      resetButton.style.display = "none"; 
-      openButton.style.display = "block"; 
+      carta.classList.remove("aberta"); // Remove o efeito de aproximação
+      mensagem.style.display = "none"; // Esconde a mensagem
+      resetButton.style.display = "none"; // Esconde o botão "Reset"
+      openButton.style.display = "block"; // Exibe o botão "Open"
     });
   </script>
 </body>
